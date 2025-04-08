@@ -13,9 +13,9 @@
 ---
 
 ## 📁 설치 및 실행 방법
-
-### 1. 프로젝트 클론
 ```bash
+### 1. 프로젝트 클론
+
 git clone <프로젝트 주소>
 cd project_root
 
@@ -34,21 +34,21 @@ pip install -r requirements.txt
 ### 4. 서버 실행
 uvicorn app.main:app --reload
 ```
-### 5. Swagger 문서 확인
+### Swagger 문서 확인
 http://localhost:8000/docs
 
 
 ## 프로젝트 구조
-project_root/
-├── app/
-│   ├── main.py
-│   ├── routers/
-│   ├── services/
-│   ├── models/
-│   ├── database/
-│   ├── core/
-│   └── data/            # 병원.json, 대피소.json 등
-├── requirements.txt
+project_root/ 
+├── app/ 
+│   ├── main.py 
+│   ├── routers/ 
+│   ├── services/ 
+│   ├── models/ 
+│   ├── database/ 
+│   ├── core/ 
+│   └── data/            # 병원.json, 대피소.json 등 
+├── requirements.txt 
 └── README.md
 
 ## 예시 API 요청
