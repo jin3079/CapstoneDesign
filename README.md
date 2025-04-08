@@ -17,7 +17,7 @@
 ### 1. 프로젝트 클론
 
 git clone <프로젝트 주소>
-cd project_root
+cd project
 
 ### 2. 가상환경 생성 및 활성화
 # Windows
