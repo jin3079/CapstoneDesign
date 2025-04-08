@@ -75,7 +75,7 @@ project_root/
 
 ---
 
-## 🔌 API 예시
+## 📍 API 예시
 GET     /places/병원	                                            "병원 전체 목록 조회"  
 GET     /places/병원?status=운영 중	                            "운영 중인 병원만 필터링"  
 POST	/places/병원	                                            "새 병원 데이터 추가"  
