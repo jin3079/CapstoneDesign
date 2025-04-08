@@ -1,6 +1,7 @@
 # 📦 장소 API 서버 (FastAPI)
 
-- 이 프로젝트는 JSON 기반으로 장소(병원, 대피소 등)를 조회/추가/수정/삭제할 수 있는 FastAPI 백엔드입니다.
+- 지역 기반 시설 데이터를 수집·저장하고, 연도별·월별로 통계 및 시각화할 수 있는 FastAPI 기반의 백엔드 프로젝트입니다.
+- 병원, 대피소 등 다양한 장소 데이터를 CRUD 처리가능
 
 ---
 
@@ -57,6 +58,7 @@ uvicorn app.main:app --reload
 ### Swagger 문서 확인
 http://localhost:8000/docs
 
+---
 
 ## 프로젝트 구조
 project_root/  
@@ -71,6 +73,8 @@ project_root/
 ├── requirements.txt  
 └── README.md  
 
+---
+
 ## 🔌 API 예시
 GET     /places/병원	                                            병원 전체 목록 조회  
 GET     /places/병원?status=운영 중	                            운영 중인 병원만 필터링  
@@ -81,4 +85,6 @@ GET	    /places/병원/timeline?scale=year	                        연도별 생
 GET	    /places/병원/timeline/operating?from_year&to_year	    누적 운영 중 병원 수  
 GET	    /places/categories	                                    등록된 카테고리 목록  
 
-# 작성자: 소프트웨어학부_20203079_서하진
+---
+
+작성자: 소프트웨어학부_20203079_서하진
