@@ -60,7 +60,7 @@ http://localhost:8000/docs
 
 ---
 
-## 프로젝트 구조
+## 📄 프로젝트 구조
 project_root/  
 ├── app/  
 │   ├── main.py  
