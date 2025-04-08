@@ -69,21 +69,21 @@ project_root/
 │   ├── models/  
 │   ├── database/  
 │   ├── core/  
-│   └── data/            # 병원.json, 대피소.json 등  
+│   └── data/  
 ├── requirements.txt  
 └── README.md  
 
 ---
 
 ## 🔌 API 예시
-GET     /places/병원	                                            병원 전체 목록 조회  
-GET     /places/병원?status=운영 중	                            운영 중인 병원만 필터링  
-POST	/places/병원	                                            새 병원 데이터 추가  
-PUT     /places/병원/1	                                        ID=1 병원 수정  
-DELETE	/places/병원/1	                                        ID=1 병원 삭제  
-GET	    /places/병원/timeline?scale=year	                        연도별 생성 통계  
-GET	    /places/병원/timeline/operating?from_year&to_year	    누적 운영 중 병원 수  
-GET	    /places/categories	                                    등록된 카테고리 목록  
+GET     /places/병원	                                            "병원 전체 목록 조회"  
+GET     /places/병원?status=운영 중	                            "운영 중인 병원만 필터링"  
+POST	/places/병원	                                            "새 병원 데이터 추가"  
+PUT     /places/병원/1	                                        "ID=1 병원 수정"  
+DELETE	/places/병원/1	                                        "ID=1 병원 삭제"  
+GET	    /places/병원/timeline?scale=year	                        "연도별 생성 통계"  
+GET	    /places/병원/timeline/operating?from_year&to_year	    "누적 운영 중 병원 수"  
+GET	    /places/categories	                                    "등록된 카테고리 목록"  
 
 ---
 
