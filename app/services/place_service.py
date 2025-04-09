@@ -4,7 +4,7 @@ from app.database.place_loader import load_place_data, save_place_data
 from app.models.schemas import Place
 from collections import Counter
 
-def fill_built_date(item: dict):
+def fill_built_date(item: dict): # builtDate가 없으면 builtYear와 builtMonth로 생성하여 추가하는 함수
     if not item.get("builtDate"):
         year = item.get("builtYear")
         month = item.get("builtMonth") or 1
@@ -12,7 +12,7 @@ def fill_built_date(item: dict):
             item['builtDate'] = f"{year}-{month:02d}-01"
     return item
 
-def get_places(category: str, status: str | None = None):
+def get_places(category: str, status: str | None = None): # 특정 카테고리의 장소 리스트 반환 (옵션: status 필터링)
     data = load_place_data(category)
     if data is None:
         return None
@@ -21,7 +21,7 @@ def get_places(category: str, status: str | None = None):
         data = [p for p in data if p.get("status") == status]
     return data
 
-def count_places_by_date(category: str, scale: str):
+def count_places_by_date(category: str, scale: str): # 카테고리 내 장소들을 연도 또는 연-월 단위로 개수 집계
     data = load_place_data(category)
     if data is None:
         return None
@@ -38,7 +38,7 @@ def count_places_by_date(category: str, scale: str):
                 continue
     return dict(sorted(counts.items()))
 
-def count_operating_places_by_year(category: str, from_year: int, to_year: int):
+def count_operating_places_by_year(category: str, from_year: int, to_year: int): # 특정 연도 범위 내에 "운영 중"인 장소들의 수를 연도별로 집계
     data = load_place_data(category)
     if data is None:
         return None
@@ -54,14 +54,14 @@ def count_operating_places_by_year(category: str, from_year: int, to_year: int):
         counter[str(year)] = count
     return counter
 
-def add_place(category: str, place: Place):
+def add_place(category: str, place: Place): # 새로운 장소 데이터 추가
     data = load_place_data(category) or []
     item = place.model_dump()
     item = fill_built_date(item)
     data.append(item)
     save_place_data(category, data)
 
-def update_place(category: str, place_id: int, place: Place):
+def update_place(category: str, place_id: int, place: Place): # 기존 장소 수정
     data = load_place_data(category)
     if data is None:
         return False
@@ -74,7 +74,7 @@ def update_place(category: str, place_id: int, place: Place):
             return True
     return False
 
-def delete_place(category: str, place_id: int):
+def delete_place(category: str, place_id: int): # 특정 id의 장소 삭제
     data = load_place_data(category)
     if data is None:
         return False
