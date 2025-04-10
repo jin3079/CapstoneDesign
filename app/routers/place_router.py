@@ -2,13 +2,18 @@ from fastapi import APIRouter, HTTPException, Query
 from typing import Optional, List
 from app.models.schemas import Place, ResponseMessage
 from app.services.place_service import (
-    get_places, add_place, update_place, delete_place,
+    get_places, get_all_places, add_place, update_place, delete_place,
     count_places_by_date, count_operating_places_by_year
 )
 from app.database.place_loader import list_categories
 
 
 router = APIRouter(prefix="/places", tags=["장소"])
+
+@router.get("/all", response_model=List[Place])
+def api_get_all_places(status: Optional[str] = None):
+    places = get_all_places(status)
+    return places
 
 @router.get("/categories", response_model=List[str]) # [GET] /places/categories - 존재하는 모든 카테고리 목록 반환
 def api_get_categories():

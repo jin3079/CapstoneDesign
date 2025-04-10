@@ -4,6 +4,18 @@ from app.database.place_loader import load_place_data, save_place_data
 from app.models.schemas import Place
 from collections import Counter
 
+def get_all_places(status: str | None = None):
+    from app.database.place_loader import list_categories
+    places = []
+    for category in list_categories():
+        data = get_places(category, status)
+        if data:
+            for item in data:
+                item["category"] = category
+                places.append(item)
+
+    return places
+
 def fill_built_date(item: dict): # builtDate가 없으면 builtYear와 builtMonth로 생성하여 추가하는 함수
     if not item.get("builtDate"):
         year = item.get("builtYear")
