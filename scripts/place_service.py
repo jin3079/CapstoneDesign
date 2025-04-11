@@ -1,11 +1,10 @@
 from datetime import datetime
-
-from app.database.place_loader import load_place_data, save_place_data
+from scripts.place_loader import load_place_data, save_place_data
 from app.models.schemas import Place
 from collections import Counter
 
 def get_all_places(status: str | None = None):
-    from app.database.place_loader import list_categories
+    from scripts.place_loader import list_categories
     places = []
     for category in list_categories():
         data = get_places(category, status)

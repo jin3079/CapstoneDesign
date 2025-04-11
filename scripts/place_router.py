@@ -1,11 +1,11 @@
 from fastapi import APIRouter, HTTPException, Query
 from typing import Optional, List
 from app.models.schemas import Place, ResponseMessage
-from app.services.place_service import (
+from scripts.place_service import (
     get_places, get_all_places, add_place, update_place, delete_place,
     count_places_by_date, count_operating_places_by_year
 )
-from app.database.place_loader import list_categories
+from scripts.place_loader import list_categories
 
 
 router = APIRouter(prefix="/places", tags=["장소"])
