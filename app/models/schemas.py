@@ -7,9 +7,9 @@ class Place(BaseModel):
     lat:float
     lng:float
     status:str
-    builtYear: int | None = None
-    builtMonth: int | None = None
-    builtDate: date | None = None
+    built_year: int | None = None
+    built_month: int | None = None
+    built_date: date | None = None
     capacity: int | None = None
     category: str | None = None
 
