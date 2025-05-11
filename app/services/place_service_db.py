@@ -127,20 +127,26 @@ def count_operating_places_by_year(db: Session, category_name: str, from_year: i
     if not category:
         return None
 
-    results = (
-        db.query(Place.built_year, func.count())
+    all_places = (
+        db.query(Place.built_year)
         .filter(
             Place.category_id == category.id,
             Place.status == "운영 중",
-            Place.built_year >= from_year,
-            Place.built_year <= to_year
+            Place.built_year <= to_year  # 전체 누적 대상
         )
-        .group_by(Place.built_year)
-        .order_by(Place.built_year)
         .all()
     )
 
-    return {"data": [{"year": r[0], "count": r[1]} for r in results]}
+    year_counts = {}
+    for year in range(from_year, to_year + 1):
+        year_counts[year] = 0
+
+    for place in all_places:
+        for y in range(place.built_year, to_year + 1):
+            if y in year_counts:
+                year_counts[y] += 1
+
+    return {"data": [{"year": y, "count": year_counts[y]} for y in sorted(year_counts.keys())]}
 
 def get_category_list(db: Session):
     return [category.name for category in db.query(Category).all()]
