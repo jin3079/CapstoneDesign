@@ -33,6 +33,7 @@
 - 카테고리 목록 조회
 - Swagger 문서 자동화
 - CORS 허용 → 프론트엔드와 연동 가능
+- CSV 파일 다운로드 기능
 
 ---
 
@@ -72,8 +73,7 @@ project/
 │   ├── services/              # DB 접근 로직 모음
 │   ├── models/                # Pydantic 응답 모델
 │   ├── database/              # SQLAlchemy 설정 및 모델
-│   ├── core/                  # CORS 등 설정 모듈
-│   └── data/                  # (선택) 초기 JSON 데이터
+│   └── core/                  # CORS 등 설정 모듈
 ├── requirements.txt
 └── README.md
 ```
@@ -91,7 +91,8 @@ project/
 | DELETE | `/places/{place_id}` | 장소 삭제                            |
 | GET | `/places/categories` | 등록된 카테고리 목록 조회                   |
 | GET | `/places/timeline?category=병원&scale=year` | 연도별 생성 장소 수 통계                   |
-| GET | `/places/timeline/operating?category=병원&from_year=2020&to_year=2024` | 운영 중인 장소 누적 수 통계                 |
+| GET | `/places/timeline/operating?category=병원&from_year=2020&to_year=2024` | 운영 중인 장소 누적 수 통계    |   
+| GET | `/places/download-csv` | csv파일 다운로드  |
 
 ---
 
