@@ -2,13 +2,15 @@ from fastapi import APIRouter, HTTPException, Query, Depends, Response
 from typing import Optional, List
 from sqlalchemy.orm import Session
 from app.database.db import SessionLocal
-from app.models.schemas import Place, ResponseMessage
+from app.models.schemas import Place, ResponseMessage, Category
 from app.services.place_service_db import (
     get_all_places, get_places_by_category,
     add_place, update_place,
     delete_place, count_places_by_date,
     count_operating_places_by_year, get_category_list,
-    get_place_by_id
+    get_place_by_id,
+    add_category,
+    delete_category,
 )
 import csv
 import io
@@ -85,6 +87,13 @@ def api_add_place(place: Place, db: Session = Depends(get_db)):
     add_place(db, place)
     return {"message": f"'{place.category}'에 장소가 추가되었습니다."}
 
+@router.post("/categories", response_model=ResponseMessage)
+def api_create_category(category: Category, db: Session = Depends(get_db)):
+    success = add_category(db, category.name)
+    if not success:
+        raise HTTPException(status_code=400, detail="카테고리가 이미 존재합니다.")
+    return {"message": f"'{category.name}' 카테고리가 추가되었습니다."}
+
 @router.put("/{place_id}", response_model=ResponseMessage)
 def api_update_place(place_id: int, place: Place, db: Session = Depends(get_db)):
     if not update_place(db, place_id, place):
@@ -96,3 +105,10 @@ def api_delete_place(place_id: int, db: Session = Depends(get_db)):
     if not delete_place(db, place_id):
         raise HTTPException(status_code=404, detail="해당 id 없음")
     return {"message": f"id={place_id} 항목 삭제됨"}
+
+@router.delete("/categories/{category_name}", response_model=ResponseMessage)
+def api_delete_category(category_name: str, db: Session = Depends(get_db)):
+    success = delete_category(db, category_name)
+    if not success:
+        raise HTTPException(status_code=400, detail="카테고리가 존재하지 않거나 연관된 장소가 있어 삭제할 수 없습니다.")
+    return {"message": f"카테고리'{category_name}'가 삭제되었습니다."}

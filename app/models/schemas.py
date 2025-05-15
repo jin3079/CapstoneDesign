@@ -13,5 +13,8 @@ class Place(BaseModel):
     capacity: int | None = None
     category: str | None = None
 
+class Category(BaseModel):
+    name:str
+
 class ResponseMessage(BaseModel):
     message:str

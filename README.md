@@ -82,17 +82,19 @@ project/
 
 ## 📍 API 목록
 
-| Method | Endpoint | 설명                               |
-|--------|----------|----------------------------------|
-| GET | `/places` | 전체 장소 조회 (category/status 필터 가능) |
-| GET | `/places/{place_id}` | 특정 장소 상세 조회                      |
-| POST | `/places` | 새 장소 추가                          |
-| PUT | `/places/{place_id}` | 장소 수정                            |
-| DELETE | `/places/{place_id}` | 장소 삭제                            |
-| GET | `/places/categories` | 등록된 카테고리 목록 조회                   |
-| GET | `/places/timeline?category=병원&scale=year` | 연도별 생성 장소 수 통계                   |
-| GET | `/places/timeline/operating?category=병원&from_year=2020&to_year=2024` | 운영 중인 장소 누적 수 통계    |   
-| GET | `/places/download-csv` | csv파일 다운로드  |
+| Method | Endpoint                                                              | 설명                               |
+|--------|-----------------------------------------------------------------------|----------------------------------|
+| GET    | `/places`                                                             | 전체 장소 조회 (category/status 필터 가능) |
+| GET    | `/places/{place_id}`                                                  | 특정 장소 상세 조회                      |
+| POST   | `/places`                                                             | 새 장소 추가                          |
+| PUT    | `/places/{place_id}`                                                  | 장소 수정                            |
+| DELETE | `/places/{place_id}`                                                  | 장소 삭제                            |
+| GET    | `/places/categories`                                                  | 등록된 카테고리 목록 조회                   |
+| POST   | `/places/categories`                                                  | 새 카테고리 추가                        |
+| DELETE | `/places/categories/{category_name}`                                  | 카테고리 삭제                          |
+| GET    | `/places/timeline?category=병원&scale=year`                             | 연도별 생성 장소 수 통계                   |
+| GET    | `/places/timeline/operating?category=병원&from_year=2020&to_year=2024`  | 운영 중인 장소 누적 수 통계                 |   
+| GET    | `/places/download-csv`                                                | csv파일 다운로드                       |
 
 ---
 

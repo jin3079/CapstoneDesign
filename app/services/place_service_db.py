@@ -74,6 +74,15 @@ def add_place(db: Session, place: Place):
     db.add(new_place)
     db.commit()
 
+def add_category(db: Session, category_name: str) -> bool:
+    existing = db.query(Category).filter_by(name=category_name).first()
+    if existing:
+        return False
+    category = Category(name=category_name)
+    db.add(category)
+    db.commit()
+    return True
+
 def update_place(db: Session, place_id: int, place):
     target = db.query(Place).filter_by(id=place_id).first()
     if not target:
@@ -104,6 +113,19 @@ def delete_place(db: Session, place_id: int):
     if not place:
         return False
     db.delete(place)
+    db.commit()
+    return True
+
+def delete_category(db: Session, category_name: str) -> bool:
+    category = db.query(Category).filter_by(name=category_name).first()
+    if not category:
+        return False
+
+    places = db.query(Place).filter_by(category_id=category.id).all()
+    if places:
+        return False
+
+    db.delete(category)
     db.commit()
     return True
 
