@@ -41,7 +41,7 @@
 ```bash
 ### 1. 프로젝트 클론
 git clone <프로젝트 주소>
-cd project
+cd project\backend
 
 ### 2. 가상환경 생성 및 활성화
 # Windows
@@ -67,15 +67,16 @@ uvicorn app.main:app --reload
 ## 📄 프로젝트 구조
 ```
 project/
-├── app/
-│   ├── main.py                # FastAPI 앱 시작점
-│   ├── routers/               # API 라우터 모음
-│   ├── services/              # DB 접근 로직 모음
-│   ├── models/                # Pydantic 응답 모델
-│   ├── database/              # SQLAlchemy 설정 및 모델
-│   └── core/                  # CORS 등 설정 모듈
-├── requirements.txt
-└── README.md
+└── backend/
+    ├── app/
+    │  ├── main.py                # FastAPI 앱 시작점
+    │  ├── routers/               # API 라우터 모음
+    │  ├── services/              # DB 접근 로직 모음
+    │  ├── models/                # Pydantic 응답 모델
+    │  ├── database/              # SQLAlchemy 설정 및 모델
+    │  └── core/                  # CORS 등 설정 모듈
+    ├── requirements.txt
+    └── README.md
 ```
 
 ---
